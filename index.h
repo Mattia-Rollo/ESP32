@@ -28,6 +28,9 @@ const char MAIN_page[] PROGMEM = R"=====(
 </div>
 <script>
 
+// ho creato una variabile per poter utilizzare un solo bottone per cambiare stato accesso spento di un led,
+//il problema è che così la scritta sul bottone cambia, mentre
+//il led potrebbe non essere acceso, per il fatto che la connessione fallisce
  var x = false;
 
 function change() {
@@ -41,6 +44,8 @@ function change() {
   }
 }
 
+// questa funzione serve a inviare un bit tra 0 e 1 per accendere il led
+// non hoh ancora capito la scringa xhttp.open("GET", "setLED?LEDstate="+led)
 function sendData(led) {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
@@ -49,11 +54,11 @@ function sendData(led) {
       this.responseText;
     }
   };
-  xhttp.open("GET", "setLED?LEDstate="+led, true);
-  xhttp.send();
+  xhttp.open("GET", "setLED?LEDstate="+led, true); // questa stringa non l'ho ancora capita,
+  xhttp.send();                                     // perchè in genere il metodo "GET" si usa per inviare dati 
   
 }
-
+ // da qui in giù, serve per leggere un potenziometro
 setInterval(function() {
   // Call a function repetatively with 2 Second interval
   getData();
