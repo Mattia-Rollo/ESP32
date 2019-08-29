@@ -53,6 +53,7 @@ void handleLED() {
 //===============================================================
 
 void setup(void){
+  pinMode(LED, OUTPUT);
   Serial.begin(115200);
   Serial.println();
   Serial.println("Booting Sketch...");
@@ -83,12 +84,12 @@ void setup(void){
 //----------------------------------------------------------------
  
   server.on("/", handleRoot);      //This is display page
-  server.on("/readADC", handleADC);//To get update of ADC Value only
+  server.on("/readADC", handleADC);// To get update of ADC Value only
   server.on("/setLED", handleLED);
  
   server.begin();                  //Start server
   Serial.println("HTTP server started");
-  pinMode(LED, OUTPUT);
+  
 }
 
 //===============================================================
